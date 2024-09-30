@@ -19,7 +19,7 @@ def create_tables():
         highest_gain FLOAT,
         highest_putting FLOAT,
         best_lvl INT
-    )
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     """
     cur.execute(user_table_query)
     conn.commit()
@@ -34,7 +34,7 @@ def create_tables():
         put FLOAT,
         gain FLOAT,
         FOREIGN KEY (user_id) REFERENCES user(id)
-    )
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     """
     cur.execute(stats_table_query)
     conn.commit()
