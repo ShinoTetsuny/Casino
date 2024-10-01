@@ -1,4 +1,4 @@
-from SQL_request import insertNewUser, getUser, insertNewStats
+from SQL_request import *
 from db_connect import mysqlconnect
 
 def TestSQL():

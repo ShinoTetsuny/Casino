@@ -16,30 +16,29 @@ def insertNewUser(name_user):
 
 
     # Insert stats
-def insertNewStats(user_id, level, nb_try):
+def insertNewStats(user_id, level, nb_try, put, gain):
     with conn.cursor() as cursor:
-        sql = "INSERT INTO `stats` (user_id, level, nb_try) VALUES (%s, %s, %s)"
-        cursor.execute(sql, (user_id, level, nb_try))
+        sql = "INSERT INTO `stats` (user_id, level, nb_try, put, gain) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(sql, (user_id, level, nb_try, put, gain))
         conn.commit()
 
 
 ## UPDATE SQL REQUESTS
     # Update a user
-def updateUser(name_user, average_try, average_putting, last_level):
+def updateUser(name_user, average_try, average_putting, last_level, total_gain, highest_gain, highest_putting, best_lvl):
     with conn.cursor() as cursor:
-        sql = "UPDATE user SET average_try = %s, average_putting = %s, last_level = %s WHERE name_user = %s"
-        cursor.execute(sql, (average_try, average_putting, last_level, name_user))
+        sql = "UPDATE user SET average_try = %s, average_putting = %s, last_level = %s, total_gain = %s, highest_gain = %s, highest_putting = %s, best_lvl = %s WHERE name_user = %s"
+        cursor.execute(sql, (average_try, average_putting, last_level, total_gain, highest_gain, highest_putting, best_lvl, name_user))
         conn.commit()
 
 ## GET USER SQL REQUESTS
     # Get a user by name
 def getUser(name):
     with conn.cursor() as cursor:
-        sql = "SELECT id FROM user WHERE name_user = %s"
+        sql = "SELECT * FROM user WHERE name_user = %s"
         cursor.execute(sql, (name,))
         user = cursor.fetchone()
         return user
-
 
     # Get all users
 def getAllUsers():

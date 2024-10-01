@@ -24,11 +24,11 @@ def runGame(level, mise, name_user):
                 next_level = input(f"Voulez-vous continuer au niveau {level} ? (o/n) ")
                 if next_level == "n":
                     #créer la stats de a game
-                    return "n", gain
+                    return "n", level, gain, init_coup - nb_coup
                 if next_level == "o":
                     print(f"Super {name_user}, nous passons au niveau {level} !\n")
                     #créer la stats de a game
-                    return "o", level, gain
+                    return "o", level, gain, init_coup - nb_coup
                 
             else:
                 print(f"Perdu !")
@@ -52,5 +52,6 @@ def runGame(level, mise, name_user):
             
             if nb_coup == 0:
                 print(f"Désolé {name_user}, vous avez utilisé toutes vos tentatives.\n")
+                level -= 1
                 #créer la stats de a game
-                return "perdu", level, gain
+                return "perdu", level, gain, init_coup - nb_coup
