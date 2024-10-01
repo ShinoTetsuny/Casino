@@ -15,12 +15,13 @@ user = getUser(name_user)
 if user:
     print(f"user {user}")
     print(f"ReBonjour {name_user}, vous avez déjà un compte !\n")
-    print(f"Voulez vous retourner au dernier niveau({user["last_level"]}) ? (o/n) ")
+    print(f"Voulez vous retourner au dernier niveau({user['last_level']}) ? (o/n) ")
     if input() == "o":
         level = user["last_level"]
 else:
     insertNewUser(name_user)
     print(f"Bonjour {name_user}, vous avez un nouveau compte !\n")
+    user = getUser(name_user)
 
 regles = input(f"Voulez-vous voir les règles du jeu ? (o/n) ")
 if regles == "o":
@@ -42,13 +43,15 @@ while True:
     if result[0] == "n":
         print(f"Vous avez gagné {(dotation + result[2])} € ! A bientôt {name_user}!\n")
         #update du player stats
-        insertNewStats(user["id"], result[1], result[3], mise, result[2])
+        insertNewStats(user['id'], result[1], result[3], mise, result[2])
         updateUser(name_user, result[3], result[2], result[1], user['total_gain'] + result[2], max(user['highest_gain'], result[2]), max(user['highest_putting'], mise), max(user['best_lvl'], result[1]))
         break
     elif result[0] == "o":
         level = result[1]
         dotation += result[2]
+        print("user:", user, result[1], result[3], mise, result[2])
         insertNewStats(user['id'], result[1], result[3], mise, result[2])
+        # print("user:", name_user, result[3], result[2], result[1], user['total_gain'] + result[2], max(user['highest_gain'], result[2]), max(user['highest_putting'], mise), max(user['best_lvl'], result[1]))
         updateUser(name_user, result[3], result[2], result[1], user['total_gain'] + result[2], max(user['highest_gain'], result[2]), max(user['highest_putting'], mise), max(user['best_lvl'], result[1]))
     elif result[0] == "perdu":
         level = result[1]

@@ -12,13 +12,13 @@ def create_tables():
         id INT AUTO_INCREMENT PRIMARY KEY,
         name_user VARCHAR(255) UNIQUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        average_try FLOAT,
-        average_putting FLOAT,
+        average_try FLOAT DEFAULT 0,
+        average_putting FLOAT DEFAULT 0,
         last_level INT,
-        total_gain FLOAT,
-        highest_gain FLOAT,
-        highest_putting FLOAT,
-        best_lvl INT
+        total_gain FLOAT DEFAULT 0,
+        highest_gain FLOAT DEFAULT 0,
+        highest_putting FLOAT DEFAULT 0,
+        best_lvl INT DEFAULT 0
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     """
     cur.execute(user_table_query)
